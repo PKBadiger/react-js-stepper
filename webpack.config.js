@@ -1,9 +1,12 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
     entry: path.join(__dirname, 'demo/index.jsx'),
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
     module: {
         rules: [
             {
@@ -12,8 +15,8 @@ module.exports = {
                 exclude: '/node_modules'
             },
             {
-                test: /\.css$/,
-                use: ['css-loader', 'style-loader']
+                test: /\.(css|scss)$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
@@ -27,7 +30,7 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     devServer: {
-        port: 7000,
+        port: 8000,
         disableHostCheck: true
     }
 }
